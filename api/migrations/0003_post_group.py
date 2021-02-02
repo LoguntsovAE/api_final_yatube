@@ -7,13 +7,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_auto_20210127_1337'),
+        ("api", "0002_auto_20210127_1337"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='group',
-            field=models.ForeignKey(blank=True, help_text='Необязательно', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='api.group', verbose_name='Группа'),
+            model_name="post",
+            name="group",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Необязательно",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posts",
+                to="api.group",
+                verbose_name="Группа",
+            ),
         ),
     ]

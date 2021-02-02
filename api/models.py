@@ -25,7 +25,8 @@ class Post(models.Model):
         blank=True, null=True,
         verbose_name='Группа',
         help_text='Необязательно',
-        related_name='posts')
+        related_name='posts'
+    )
 
     def __str__(self):
         return self.text
@@ -54,11 +55,13 @@ class Follow(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='follower',)
+        related_name='follower',
+    )
     following = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='following')
+        related_name='following'
+    )
 
     class Meta:
         unique_together = ['user', 'following']
