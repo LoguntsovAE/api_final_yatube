@@ -6,7 +6,7 @@ from rest_framework.permissions import (
 )
 
 from .viewsets import CreateAndReadOnlyCustom
-from .models import Follow, Group, Post
+from .models import Group, Post
 from .permissions import IsAuthorOrReadOnlyPermission
 from .serializers import (
     CommentSerializer,
