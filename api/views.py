@@ -46,13 +46,20 @@ class GroupViewSet(CreateAndReadOnlyCustom):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-class FollowViewSet(viewsets.ModelViewSet):
+class FollowViewSet(CreateAndReadOnlyCustom):
     serializer_class = FollowSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['user__username']
+    search_fields = ['=user__username']
 
     def get_queryset(self):
-        return Follow.objects.filter(following=self.request.user)
-
+        return self.request.user.following.all()
+        """
+        Дополнительно рассматриваемые варианты:
+        (просьба не ругаться на докстрингн)
+        # return Follow.objects.select_related('following').filter(
+        #     following=self.request.user
+        # )
+        # return Follow.objects.filter(following=self.request.user)
+        """
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
